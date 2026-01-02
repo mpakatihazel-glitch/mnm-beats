@@ -230,7 +230,7 @@
                         <h3>${beat.title}</h3>
                         <p onclick="toggleSold(${beat.id})">${beat.bpm} BPM (Admin Control)</p>
                     </div>
-                    ${beat.sold ? '<div class="sold-label">SOLD</div>' : `<div class="price">R{beat.price}</div><button class="buy-btn" onclick="buyEmail(${beat.id})">BUY</button>`}
+                    ${beat.sold ? '<div class="sold-label">SOLD</div>' : `<div class="price">${beat.price}</div><button class="buy-btn" onclick="buyEmail(${beat.id})">BUY</button>`}
                 `;
                 grid.appendChild(card);
             });
