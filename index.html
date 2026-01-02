@@ -3,140 +3,64 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PROD MNM | 2026 THE VAULT</title>
+    <title>PROD MNM | THE VAULT</title>
     <link href="https://fonts.googleapis.com/css2?family=Syncopate:wght@700&family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
     <style>
         :root { --red: #ff0033; --black: #050505; --grey: #111; }
-        
         * { box-sizing: border-box; }
-        body { 
-            background-color: var(--black); color: white; 
-            font-family: 'Inter', sans-serif; margin: 0; 
-            -webkit-font-smoothing: antialiased;
-        }
-
+        body { background-color: var(--black); color: white; font-family: 'Inter', sans-serif; margin: 0; -webkit-font-smoothing: antialiased; }
         .container { width: 90%; max-width: 1200px; margin: 0 auto; }
 
-        header { 
-            display: flex; justify-content: space-between; align-items: center; 
-            padding: 30px 0; border-bottom: 1px solid rgba(255,0,0,0.1);
-            perspective: 1000px;
-        }
-        
-        .logo-wrapper {
-            animation: spinLogo 6s linear infinite;
-            transform-style: preserve-3d;
-        }
-        
-        @keyframes spinLogo {
-            from { transform: rotateY(0deg); }
-            to { transform: rotateY(360deg); }
-        }
-
-        .logo { 
-            font-family: 'Syncopate'; 
-            color: var(--red); 
-            font-size: 1.4rem; 
-            text-decoration: none; 
-            display: block;
-            text-shadow: 0 0 10px rgba(255, 0, 51, 0.5);
-        }
-        
+        header { display: flex; justify-content: space-between; align-items: center; padding: 30px 0; border-bottom: 1px solid rgba(255,0,0,0.1); perspective: 1000px; }
+        .logo-wrapper { animation: spinLogo 6s linear infinite; transform-style: preserve-3d; }
+        @keyframes spinLogo { from { transform: rotateY(0deg); } to { transform: rotateY(360deg); } }
+        .logo { font-family: 'Syncopate'; color: var(--red); font-size: 1.4rem; text-decoration: none; display: block; text-shadow: 0 0 10px rgba(255, 0, 51, 0.5); }
         nav a { color: white; text-decoration: none; margin-left: 20px; font-size: 0.8rem; font-weight: 700; transition: 0.3s; }
         nav a:hover { color: var(--red); }
 
-        .hero { 
-            padding: 60px 0; text-align: center; 
-            background: linear-gradient(to bottom, rgba(255,0,51,0.1), transparent);
-        }
+        .hero { padding: 60px 0; text-align: center; background: linear-gradient(to bottom, rgba(255,0,51,0.1), transparent); }
         .hero h1 { font-family: 'Syncopate'; font-size: clamp(2.5rem, 8vw, 5rem); margin: 0; line-height: 0.9; }
         .hero p { color: var(--red); font-weight: 900; letter-spacing: 5px; margin-top: 10px; }
 
         .search-area { margin: 40px 0; }
-        #beatSearch {
-            width: 100%; padding: 15px; background: var(--grey); border: 1px solid #333;
-            color: white; border-radius: 8px; outline: none; transition: 0.3s;
-        }
-        #beatSearch:focus { border-color: var(--red); }
+        #beatSearch { width: 100%; padding: 15px; background: var(--grey); border: 1px solid #333; color: white; border-radius: 8px; outline: none; }
 
-        .beat-grid { 
-            display: grid; 
-            grid-template-columns: 1fr; 
-            gap: 20px; 
-            padding-bottom: 50px;
-        }
+        .beat-grid { display: grid; grid-template-columns: 1fr; gap: 20px; padding-bottom: 50px; }
+        @media (min-width: 768px) { .beat-grid { grid-template-columns: 1fr 1fr; } }
 
-        @media (min-width: 768px) {
-            .beat-grid { grid-template-columns: 1fr 1fr; }
-        }
-
-        .beat-card {
-            background: var(--grey); border: 1px solid #222; padding: 15px;
-            border-radius: 12px; display: flex; align-items: center; transition: 0.3s;
-            position: relative;
-        }
+        .beat-card { background: var(--grey); border: 1px solid #222; padding: 15px; border-radius: 12px; display: flex; align-items: center; transition: 0.3s; position: relative; }
         .beat-card:hover:not(.sold) { border-color: var(--red); transform: translateY(-3px); }
 
-        /* --- IMAGE STYLE --- */
-        .beat-img {
-            width: 70px; height: 70px; border-radius: 6px;
-            margin-right: 15px; object-fit: cover;
-            border: 1px solid #333; flex-shrink: 0;
-        }
-
-        .play-btn {
-            width: 40px; height: 40px; border-radius: 50%; background: var(--red);
-            border: none; color: white; cursor: pointer; margin-right: 15px; flex-shrink: 0;
-            font-size: 0.8rem;
-        }
+        .beat-img { width: 70px; height: 70px; border-radius: 6px; margin-right: 15px; object-fit: cover; border: 1px solid #333; flex-shrink: 0; }
+        .play-btn { width: 40px; height: 40px; border-radius: 50%; background: var(--red); border: none; color: white; cursor: pointer; margin-right: 15px; flex-shrink: 0; font-size: 0.8rem; display: flex; align-items: center; justify-content: center; }
 
         .beat-info { flex-grow: 1; overflow: hidden; }
         .beat-info h3 { margin: 0; font-size: 0.95rem; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
         .beat-info p { margin: 5px 0 0; font-size: 0.7rem; color: #666; cursor: pointer; }
 
         .price { font-weight: 900; color: var(--red); margin: 0 15px; }
+        .buy-btn { background: white; border: none; padding: 10px 15px; border-radius: 6px; font-weight: 900; font-size: 0.75rem; cursor: pointer; }
 
-        .buy-btn {
-            background: white; border: none; padding: 10px 15px;
-            border-radius: 6px; font-weight: 900; font-size: 0.75rem; cursor: pointer;
-        }
-
-        .sold { opacity: 0.15; filter: grayscale(1); }
         .sold .buy-btn { display: none; }
-        .sold-label { 
-            position: absolute; right: 20px; top: 20px;
-            color: var(--red); font-family: 'Syncopate'; font-size: 0.7rem; 
-            border: 2px solid var(--red); padding: 5px; transform: rotate(-10deg);
-        }
+        .sold-label { position: absolute; right: 20px; top: 20px; color: var(--red); font-family: 'Syncopate'; font-size: 0.7rem; border: 2px solid var(--red); padding: 5px; transform: rotate(-10deg); background: rgba(5,5,5,0.8); }
 
-        footer {
-            padding: 80px 0 180px 0; text-align: center;
-            border-top: 1px solid rgba(255,0,0,0.1);
-        }
+        footer { padding: 80px 0 180px 0; text-align: center; border-top: 1px solid rgba(255,0,0,0.1); }
         .social-links { display: flex; justify-content: center; gap: 20px; margin-top: 25px; flex-wrap: wrap; }
-        .social-links a { color: #888; text-decoration: none; font-size: 0.65rem; font-weight: 900; font-family: 'Syncopate'; transition: 0.3s; letter-spacing: 2px; padding: 10px; }
-        .social-links a:hover { color: var(--red); border-bottom: 1px solid var(--red); }
+        .social-links a { color: #888; text-decoration: none; font-size: 0.65rem; font-weight: 900; font-family: 'Syncopate'; letter-spacing: 2px; padding: 10px; }
 
-        .dev-credit { margin-top: 60px; font-size: 0.55rem; color: #222; letter-spacing: 2px; text-transform: uppercase; }
-        .dev-credit a { color: #444; text-decoration: none; transition: 0.3s; font-weight: 900; }
-        .dev-credit a:hover { color: var(--red); }
-
-        .player-bar {
-            position: fixed; bottom: 0; left: 0; width: 100%;
-            background: rgba(0,0,0,0.95); backdrop-filter: blur(10px);
-            border-top: 2px solid var(--red); padding: 20px; z-index: 100;
-        }
-        .progress-bg { width: 100%; height: 4px; background: #222; margin-bottom: 10px; position: relative; }
+        .player-bar { position: fixed; bottom: 0; left: 0; width: 100%; background: rgba(0,0,0,0.95); backdrop-filter: blur(10px); border-top: 2px solid var(--red); padding: 20px; z-index: 100; }
+        .progress-bg { width: 100%; height: 4px; background: #222; margin-bottom: 10px; }
         #progress-fill { height: 100%; background: var(--red); width: 0%; transition: linear; }
+
+        .stop-btn { background: transparent; border: 1px solid #444; color: #888; padding: 5px 10px; border-radius: 4px; cursor: pointer; font-family: 'Syncopate'; font-size: 0.6rem; transition: 0.3s; }
+        .stop-btn:hover { color: var(--red); border-color: var(--red); }
     </style>
 </head>
 <body>
 
     <div class="container">
         <header>
-            <div class="logo-wrapper">
-                <a href="#" class="logo">PROD MNM</a>
-            </div>
+            <div class="logo-wrapper"><a href="#" class="logo">PROD MNM</a></div>
             <nav>
                 <a href="https://wa.me/27692776881" target="_blank">WHATSAPP</a>
                 <a href="mailto:mpakatihazel@gmail.com">EMAIL</a>
@@ -149,57 +73,55 @@
         </section>
 
         <div class="search-area">
-            <input type="text" id="beatSearch" placeholder="Search for your next hit (100+ tracks)...">
+            <input type="text" id="beatSearch" placeholder="Search for your next instrumental...">
         </div>
 
         <div class="beat-grid" id="beatGrid"></div>
 
         <footer>
-            <p style="font-size: 0.6rem; letter-spacing: 5px; color: #555; font-family: 'Syncopate';">CONNECT WITH PROD. MNM</p>
             <div class="social-links">
                 <a href="https://youtube.com/@prodbymnm2" target="_blank">YOUTUBE</a>
                 <a href="https://www.instagram.com/prodbymnm" target="_blank">INSTAGRAM</a>
-                <a href="#" target="_blank">SPOTIFY</a>
-                <a href="#" target="_blank">TWITTER</a>
             </div>
-
-            <p style="margin-top: 50px; font-size: 0.5rem; color: #333; letter-spacing: 1px;">© 2026 PROD MNM // ALL RIGHTS RESERVED.</p>
-            
-            <div class="dev-credit">
-                Designed & Developed by <a href="https://instagram.com/hvze.co.za" target="_blank">@hvze.co.za</a>
+            <div class="dev-credit" style="margin-top:20px;">
+                Designed & Developed by <a href="https://instagram.com/hvze.co.za" target="_blank" style="color:#444; text-decoration:none;">@hvze.co.za</a>
             </div>
         </footer>
     </div>
 
+    <audio id="mainAudio"></audio>
+
     <div class="player-bar" id="playerBar" style="display:none;">
         <div class="progress-bg"><div id="progress-fill"></div></div>
-        <div class="container" style="display:flex; justify-content: space-between; font-size: 0.7rem; font-family: 'Syncopate';">
-            <span id="nowPlayingTitle">TRACK NAME</span>
-            <span>PREVIEWING 45S</span>
+        <div class="container" style="display:flex; justify-content: space-between; align-items: center; font-size: 0.7rem; font-family: 'Syncopate';">
+            <div>
+                <span id="nowPlayingTitle">TRACK NAME</span>
+                <span id="timeDisplay" style="margin-left: 10px; color: #666;">00:00</span>
+            </div>
+            <button class="stop-btn" onclick="stopAudio()">STOP X</button>
         </div>
     </div>
 
     <script>
-        const beatNames = ["CYBER", "DRAIN", "VENOM", "GLITCH", "ROUGE", "ONYX", "GHOST", "PULSE", "VORTEX", "HAZARD"];
-        const beats = [];
-
-        // 1. SET YOUR IMAGE LINK HERE
-        const commonImage = "b.JPEG"; 
-
-        for (let i = 1; i <= 100; i++) {
-            const nameBase = beatNames[Math.floor(Math.random() * beatNames.length)];
-            beats.push({
-                id: i,
-                title: `${nameBase} #${i}`,
-                bpm: 120 + (i % 40),
-                price: "R700",
-                sold: false,
-                image: commonImage // All beats use the same image
-            });
-        }
+        const beats = [
+            { id: 1, title: "MANOLO", bpm: 140, price: "R700", sold: false, image: "b.JPEG", audio: "beats/1.mp3" },
+            { id: 2, title: "HAMBO LALA", bpm: 128, price: "R700", sold: false, image: "b.JPEG", audio: "beats/2.mp3" },
+            { id: 3, title: "MAYHEM FREE STYLE", bpm: 150, price: "R700", sold: false, image: "b.JPEG", audio: "audio/mayhem.mp3" },
+			{ id: 3, title: "MAYHEM FREE STYLE", bpm: 150, price: "R700", sold: false, image: "b.JPEG", audio: "audio/mayhem.mp3" },
+			{ id: 3, title: "MAYHEM FREE STYLE", bpm: 150, price: "R700", sold: false, image: "b.JPEG", audio: "audio/mayhem.mp3" },
+		    { id: 3, title: "MAYHEM FREE STYLE", bpm: 150, price: "R700", sold: false, image: "b.JPEG", audio: "audio/mayhem.mp3" },
+            { id: 3, title: "MAYHEM FREE STYLE", bpm: 150, price: "R700", sold: false, image: "b.JPEG", audio: "audio/mayhem.mp3" },
+			{ id: 4, title: "CYBERPUNK", bpm: 140, price: "R700", sold: false, image: "b.JPEG", audio: "audio/cyber.mp3" }
+            // Add more here following the same format...
+        ];
 
         const grid = document.getElementById('beatGrid');
         const searchInput = document.getElementById('beatSearch');
+        const mainAudio = document.getElementById('mainAudio');
+        const progressFill = document.getElementById('progress-fill');
+        const playerBar = document.getElementById('playerBar');
+        const nowPlayingTitle = document.getElementById('nowPlayingTitle');
+        const timeDisplay = document.getElementById('timeDisplay');
 
         function render(filter = "") {
             grid.innerHTML = "";
@@ -210,7 +132,7 @@
                 card.className = `beat-card ${beat.sold ? 'sold' : ''}`;
                 card.innerHTML = `
                     <img src="${beat.image}" class="beat-img">
-                    <button class="play-btn" onclick="playPreview('${beat.title}')">▶</button>
+                    <button class="play-btn" data-audio="${beat.audio}" onclick="togglePlay('${beat.audio}', '${beat.title}', this)">▶</button>
                     <div class="beat-info">
                         <h3>${beat.title}</h3>
                         <p onclick="toggleSold(${beat.id})">${beat.bpm} BPM</p>
@@ -221,38 +143,61 @@
             });
         }
 
-        // Rest of the logic (Preview, Email, ToggleSold)
-        let previewInterval;
-        function playPreview(title) {
-            const bar = document.getElementById('playerBar');
-            const fill = document.getElementById('progress-fill');
-            const titleEl = document.getElementById('nowPlayingTitle');
-            bar.style.display = "block";
-            titleEl.innerText = "STREAMING: " + title;
-            let progress = 0;
-            clearInterval(previewInterval);
-            previewInterval = setInterval(() => {
-                progress += 0.22; 
-                fill.style.width = progress + "%";
-                if (progress >= 100) {
-                    clearInterval(previewInterval);
-                    bar.style.display = "none";
+        function togglePlay(file, title, btn) {
+            // Check if we are clicking the same song
+            if (mainAudio.src.includes(file)) {
+                if (mainAudio.paused) {
+                    mainAudio.play();
+                    btn.innerText = "⏸";
+                } else {
+                    mainAudio.pause();
+                    btn.innerText = "▶";
                 }
-            }, 100);
+            } else {
+                // Clicking a different song
+                resetButtons();
+                mainAudio.src = file;
+                mainAudio.play();
+                btn.innerText = "⏸";
+                playerBar.style.display = "block";
+                nowPlayingTitle.innerText = "STREAMING: " + title;
+            }
         }
+
+        function stopAudio() {
+            mainAudio.pause();
+            mainAudio.currentTime = 0;
+            playerBar.style.display = "none";
+            resetButtons();
+        }
+
+        function resetButtons() {
+            document.querySelectorAll('.play-btn').forEach(b => b.innerText = "▶");
+        }
+
+        mainAudio.onended = () => {
+            resetButtons();
+            playerBar.style.display = "none";
+        };
+
+        mainAudio.ontimeupdate = () => {
+            if (mainAudio.duration) {
+                const pct = (mainAudio.currentTime / mainAudio.duration) * 100;
+                progressFill.style.width = pct + "%";
+                let mins = Math.floor(mainAudio.currentTime / 60);
+                let secs = Math.floor(mainAudio.currentTime % 60);
+                timeDisplay.innerText = `${mins}:${secs < 10 ? '0'+secs : secs}`;
+            }
+        };
 
         function buyEmail(id) {
             const beat = beats.find(b => b.id === id);
-            const email = "mpakatihazel@gmail.com";
-            const subject = encodeURIComponent(`Purchase Inquiry: ${beat.title}`);
-            const body = encodeURIComponent(`Hi Prod MNM,\n\nI want to purchase the beat: ${beat.title}.\n\nWhat is the next step for payment?\n\nThank you!`);
-            window.location.href = `mailto:${email}?subject=${subject}&body=${body}`;
+            window.location.href = `mailto:mpakatihazel@gmail.com?subject=Purchase: ${beat.title}&body=I'm interested in buying ${beat.title}. What are the next steps?`;
         }
 
         function toggleSold(id) {
             const beat = beats.find(b => b.id === id);
-            const status = beat.sold ? "AVAILABLE" : "SOLD";
-            if(confirm(`Admin: Switch ${beat.title} to ${status}?`)) {
+            if(confirm(`Admin: Toggle Sold status for ${beat.title}?`)) {
                 beat.sold = !beat.sold;
                 render(searchInput.value);
             }
