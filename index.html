@@ -169,16 +169,16 @@
         </section>
 
         <div class="search-area">
-            <input type="text" id="beatSearch" placeholder="Search for your next hit (100+ tracks)...">
+            <input type="text" id="beatSearch" placeholder="Search for your next instrumental (100+ tracks)...">
         </div>
 
         <div class="beat-grid" id="beatGrid"></div>
 
         <footer>
-            <p style="font-size: 0.6rem; letter-spacing: 5px; color: #555; font-family: 'Syncopate';">CONNECT WITH THE PRODUCER</p>
+            <p style="font-size: 0.6rem; letter-spacing: 5px; color: #555; font-family: 'Syncopate';">CONNECT WITH PROD. MNM</p>
             <div class="social-links">
-                <a href="https://youtube.com/YOUR_CHANNEL" target="_blank">YOUTUBE</a>
-                <a href="https://instagram.com/YOUR_USER" target="_blank">INSTAGRAM</a>
+                <a href="https://youtube.com/@prodbymnm2?si=QBsbJgCGhso-2pPM" target="_blank">YOUTUBE</a>
+                <a href="https://www.instagram.com/prodbymnm?igsh=MWs4em9uYzYwb201bQ==" target="_blank">INSTAGRAM</a>
                 <a href="https://spotify.com" target="_blank">SPOTIFY</a>
                 <a href="https://twitter.com/YOUR_USER" target="_blank">TWITTER</a>
             </div>
@@ -209,7 +209,7 @@
                 id: i,
                 title: `${nameBase} #${i}`,
                 bpm: 120 + (i % 40),
-                price: "$49.99",
+                price: "R700",
                 sold: false
             });
         }
@@ -230,7 +230,7 @@
                         <h3>${beat.title}</h3>
                         <p onclick="toggleSold(${beat.id})">${beat.bpm} BPM (Admin Control)</p>
                     </div>
-                    ${beat.sold ? '<div class="sold-label">SOLD</div>' : `<div class="price">${beat.price}</div><button class="buy-btn" onclick="buyEmail(${beat.id})">BUY</button>`}
+                    ${beat.sold ? '<div class="sold-label">SOLD</div>' : `<div class="price">R{beat.price}</div><button class="buy-btn" onclick="buyEmail(${beat.id})">BUY</button>`}
                 `;
                 grid.appendChild(card);
             });
@@ -262,7 +262,7 @@
             const beat = beats.find(b => b.id === id);
             const email = "mpakatihazel@gmail.com";
             const subject = encodeURIComponent(`Purchase Inquiry: ${beat.title}`);
-            const body = encodeURIComponent(`Hi Prod MnM,\n\nI want to purchase the beat: ${beat.title}.\n\nWhat is the next step for payment?\n\nThank you!`);
+            const body = encodeURIComponent(`Hi Prod MNM,\n\nI want to purchase the beat: ${beat.title}.\n\nWhat is the next step for payment?\n\nThank you!`);
             window.location.href = `mailto:${email}?subject=${subject}&body=${body}`;
         }
 
