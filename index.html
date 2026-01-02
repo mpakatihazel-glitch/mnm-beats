@@ -17,7 +17,6 @@
 
         .container { width: 90%; max-width: 1200px; margin: 0 auto; }
 
-        /* --- THE SPINNING 3D LOGO --- */
         header { 
             display: flex; justify-content: space-between; align-items: center; 
             padding: 30px 0; border-bottom: 1px solid rgba(255,0,0,0.1);
@@ -72,26 +71,34 @@
         }
 
         .beat-card {
-            background: var(--grey); border: 1px solid #222; padding: 20px;
+            background: var(--grey); border: 1px solid #222; padding: 15px;
             border-radius: 12px; display: flex; align-items: center; transition: 0.3s;
             position: relative;
         }
         .beat-card:hover:not(.sold) { border-color: var(--red); transform: translateY(-3px); }
 
+        /* --- IMAGE STYLE --- */
+        .beat-img {
+            width: 70px; height: 70px; border-radius: 6px;
+            margin-right: 15px; object-fit: cover;
+            border: 1px solid #333; flex-shrink: 0;
+        }
+
         .play-btn {
-            width: 50px; height: 50px; border-radius: 50%; background: var(--red);
+            width: 40px; height: 40px; border-radius: 50%; background: var(--red);
             border: none; color: white; cursor: pointer; margin-right: 15px; flex-shrink: 0;
+            font-size: 0.8rem;
         }
 
         .beat-info { flex-grow: 1; overflow: hidden; }
-        .beat-info h3 { margin: 0; font-size: 1rem; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+        .beat-info h3 { margin: 0; font-size: 0.95rem; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
         .beat-info p { margin: 5px 0 0; font-size: 0.7rem; color: #666; cursor: pointer; }
 
         .price { font-weight: 900; color: var(--red); margin: 0 15px; }
 
         .buy-btn {
-            background: white; border: none; padding: 12px 20px;
-            border-radius: 6px; font-weight: 900; font-size: 0.8rem; cursor: pointer;
+            background: white; border: none; padding: 10px 15px;
+            border-radius: 6px; font-weight: 900; font-size: 0.75rem; cursor: pointer;
         }
 
         .sold { opacity: 0.15; filter: grayscale(1); }
@@ -102,43 +109,16 @@
             border: 2px solid var(--red); padding: 5px; transform: rotate(-10deg);
         }
 
-        /* --- FOOTER & SOCIALS --- */
         footer {
-            padding: 80px 0 180px 0;
-            text-align: center;
+            padding: 80px 0 180px 0; text-align: center;
             border-top: 1px solid rgba(255,0,0,0.1);
         }
-        .social-links { 
-            display: flex; 
-            justify-content: center; 
-            gap: 20px; 
-            margin-top: 25px; 
-            flex-wrap: wrap;
-        }
-        .social-links a { 
-            color: #888; text-decoration: none; font-size: 0.65rem; font-weight: 900; 
-            font-family: 'Syncopate'; transition: 0.3s; letter-spacing: 2px;
-            padding: 10px; border: 1px solid transparent;
-        }
-        .social-links a:hover { 
-            color: var(--red); 
-            border-bottom: 1px solid var(--red);
-        }
+        .social-links { display: flex; justify-content: center; gap: 20px; margin-top: 25px; flex-wrap: wrap; }
+        .social-links a { color: #888; text-decoration: none; font-size: 0.65rem; font-weight: 900; font-family: 'Syncopate'; transition: 0.3s; letter-spacing: 2px; padding: 10px; }
+        .social-links a:hover { color: var(--red); border-bottom: 1px solid var(--red); }
 
-        /* Developer Credit Styling */
-        .dev-credit {
-            margin-top: 60px;
-            font-size: 0.55rem;
-            color: #222;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-        }
-        .dev-credit a {
-            color: #444;
-            text-decoration: none;
-            transition: 0.3s;
-            font-weight: 900;
-        }
+        .dev-credit { margin-top: 60px; font-size: 0.55rem; color: #222; letter-spacing: 2px; text-transform: uppercase; }
+        .dev-credit a { color: #444; text-decoration: none; transition: 0.3s; font-weight: 900; }
         .dev-credit a:hover { color: var(--red); }
 
         .player-bar {
@@ -169,7 +149,7 @@
         </section>
 
         <div class="search-area">
-            <input type="text" id="beatSearch" placeholder="Search for your next instrumental (100+ tracks)...">
+            <input type="text" id="beatSearch" placeholder="Search for your next hit (100+ tracks)...">
         </div>
 
         <div class="beat-grid" id="beatGrid"></div>
@@ -177,16 +157,16 @@
         <footer>
             <p style="font-size: 0.6rem; letter-spacing: 5px; color: #555; font-family: 'Syncopate';">CONNECT WITH PROD. MNM</p>
             <div class="social-links">
-                <a href="https://youtube.com/@prodbymnm2?si=QBsbJgCGhso-2pPM" target="_blank">YOUTUBE</a>
-                <a href="https://www.instagram.com/prodbymnm?igsh=MWs4em9uYzYwb201bQ==" target="_blank">INSTAGRAM</a>
-                <a href="https://spotify.com" target="_blank">SPOTIFY</a>
-                <a href="https://twitter.com/YOUR_USER" target="_blank">TWITTER</a>
+                <a href="https://youtube.com/@prodbymnm2" target="_blank">YOUTUBE</a>
+                <a href="https://www.instagram.com/prodbymnm" target="_blank">INSTAGRAM</a>
+                <a href="#" target="_blank">SPOTIFY</a>
+                <a href="#" target="_blank">TWITTER</a>
             </div>
 
             <p style="margin-top: 50px; font-size: 0.5rem; color: #333; letter-spacing: 1px;">© 2026 PROD MNM // ALL RIGHTS RESERVED.</p>
             
             <div class="dev-credit">
-                Designed & Developed by <a href="https://instagram.com/DESIGNER_USERNAME" target="_blank">@hvze.co.za</a>
+                Designed & Developed by <a href="https://instagram.com/hvze.co.za" target="_blank">@hvze.co.za</a>
             </div>
         </footer>
     </div>
@@ -203,6 +183,9 @@
         const beatNames = ["CYBER", "DRAIN", "VENOM", "GLITCH", "ROUGE", "ONYX", "GHOST", "PULSE", "VORTEX", "HAZARD"];
         const beats = [];
 
+        // 1. SET YOUR IMAGE LINK HERE
+        const commonImage = "b.JPEG"; 
+
         for (let i = 1; i <= 100; i++) {
             const nameBase = beatNames[Math.floor(Math.random() * beatNames.length)];
             beats.push({
@@ -210,7 +193,8 @@
                 title: `${nameBase} #${i}`,
                 bpm: 120 + (i % 40),
                 price: "R700",
-                sold: false
+                sold: false,
+                image: commonImage // All beats use the same image
             });
         }
 
@@ -225,10 +209,11 @@
                 const card = document.createElement('div');
                 card.className = `beat-card ${beat.sold ? 'sold' : ''}`;
                 card.innerHTML = `
+                    <img src="${beat.image}" class="beat-img">
                     <button class="play-btn" onclick="playPreview('${beat.title}')">▶</button>
                     <div class="beat-info">
                         <h3>${beat.title}</h3>
-                        <p onclick="toggleSold(${beat.id})">${beat.bpm} BPM (Admin Control)</p>
+                        <p onclick="toggleSold(${beat.id})">${beat.bpm} BPM</p>
                     </div>
                     ${beat.sold ? '<div class="sold-label">SOLD</div>' : `<div class="price">${beat.price}</div><button class="buy-btn" onclick="buyEmail(${beat.id})">BUY</button>`}
                 `;
@@ -236,15 +221,14 @@
             });
         }
 
+        // Rest of the logic (Preview, Email, ToggleSold)
         let previewInterval;
         function playPreview(title) {
             const bar = document.getElementById('playerBar');
             const fill = document.getElementById('progress-fill');
             const titleEl = document.getElementById('nowPlayingTitle');
-            
             bar.style.display = "block";
             titleEl.innerText = "STREAMING: " + title;
-            
             let progress = 0;
             clearInterval(previewInterval);
             previewInterval = setInterval(() => {
@@ -252,7 +236,6 @@
                 fill.style.width = progress + "%";
                 if (progress >= 100) {
                     clearInterval(previewInterval);
-                    alert("Preview Ended.");
                     bar.style.display = "none";
                 }
             }, 100);
