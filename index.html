@@ -8,7 +8,6 @@
     <style>
         :root { --red: #ff0033; --black: #050505; --grey: #111; }
         
-        /* FIX: Prevent horizontal scroll on mobile */
         * { box-sizing: border-box; }
         html, body { 
             overflow-x: hidden; 
@@ -30,7 +29,6 @@
             margin: 0 auto; 
         }
 
-        /* FIX: Allow header to wrap on small mobile screens so links don't push right */
         header { 
             display: flex; 
             justify-content: space-between; 
@@ -73,7 +71,6 @@
         .beat-grid { display: grid; grid-template-columns: 1fr; gap: 20px; padding-bottom: 50px; }
         @media (min-width: 768px) { .beat-grid { grid-template-columns: 1fr 1fr; } }
 
-        /* FIX: Ensure cards never exceed screen width */
         .beat-card { 
             background: var(--grey); 
             border: 1px solid #222; 
@@ -92,10 +89,9 @@
         .beat-img { width: 60px; height: 60px; border-radius: 6px; margin-right: 12px; object-fit: cover; border: 1px solid #333; flex-shrink: 0; }
         .play-btn { width: 40px; height: 40px; border-radius: 50%; background: var(--red); border: none; color: white; cursor: pointer; margin-right: 12px; flex-shrink: 0; font-size: 0.8rem; display: flex; align-items: center; justify-content: center; }
 
-        /* FIX: prevent text from pushing the card width wider than the screen */
         .beat-info { flex-grow: 1; min-width: 0; } 
         .beat-info h3 { margin: 0; font-size: 0.9rem; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-        .beat-info p { margin: 5px 0 0; font-size: 0.7rem; color: #666; cursor: pointer; }
+        .beat-info p { margin: 5px 0 0; font-size: 0.7rem; color: #666; cursor: default; }
 
         .price { font-weight: 900; color: var(--red); margin: 0 10px; font-size: 0.85rem; }
         .buy-btn { background: white; border: none; padding: 8px 12px; border-radius: 6px; font-weight: 900; font-size: 0.7rem; cursor: pointer; flex-shrink: 0; }
@@ -135,7 +131,7 @@
             <input type="text" id="beatSearch" placeholder="Search for your next instrumental...">
         </div>
 
-        <div class="beat-grid" id="beatGrid"></div>
+        <div id="beatGrid" class="beat-grid"></div>
 
         <footer>
             <div class="social-links">
@@ -189,7 +185,7 @@
                     <button class="play-btn" onclick="togglePlay('${beat.audio}', '${beat.title}', this)">▶</button>
                     <div class="beat-info">
                         <h3>${beat.title}</h3>
-                        <p onclick="toggleSold(${beat.id})">${beat.bpm} BPM</p>
+                        <p>${beat.bpm} BPM</p>
                     </div>
                     ${beat.sold ? '<div class="sold-label">SOLD</div>' : `<div class="price">${beat.price}</div><button class="buy-btn" onclick="buyEmail(${beat.id})">BUY</button>`}
                 `;
@@ -245,14 +241,6 @@
         function buyEmail(id) {
             const beat = beats.find(b => b.id === id);
             window.location.href = `mailto:mpakatihazel@gmail.com?subject=Purchase: ${beat.title}&body=I'm interested in buying ${beat.title}. What are the next steps?`;
-        }
-
-        function toggleSold(id) {
-            const beat = beats.find(b => b.id === id);
-            if(confirm(`Admin: Toggle Sold status for ${beat.title}?`)) {
-                beat.sold = !beat.sold;
-                render(searchInput.value);
-            }
         }
 
         searchInput.addEventListener('input', (e) => render(e.target.value));
