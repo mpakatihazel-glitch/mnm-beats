@@ -7,14 +7,59 @@
     <link href="https://fonts.googleapis.com/css2?family=Syncopate:wght@700&family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
     <style>
         :root { --red: #ff0033; --black: #050505; --grey: #111; }
+        
+        /* FIX: Prevent horizontal scroll on mobile */
         * { box-sizing: border-box; }
-        body { background-color: var(--black); color: white; font-family: 'Inter', sans-serif; margin: 0; -webkit-font-smoothing: antialiased; }
-        .container { width: 90%; max-width: 1200px; margin: 0 auto; }
+        html, body { 
+            overflow-x: hidden; 
+            width: 100%;
+            margin: 0;
+            padding: 0;
+        }
 
-        header { display: flex; justify-content: space-between; align-items: center; padding: 30px 0; border-bottom: 1px solid rgba(255,0,0,0.1); perspective: 1000px; }
-        .logo-wrapper { animation: spinLogo 6s linear infinite; transform-style: preserve-3d; }
+        body { 
+            background-color: var(--black); 
+            color: white; 
+            font-family: 'Inter', sans-serif; 
+            -webkit-font-smoothing: antialiased; 
+        }
+
+        .container { 
+            width: 90%; 
+            max-width: 1200px; 
+            margin: 0 auto; 
+        }
+
+        /* FIX: Allow header to wrap on small mobile screens so links don't push right */
+        header { 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center; 
+            padding: 30px 0; 
+            border-bottom: 1px solid rgba(255,0,0,0.1); 
+            perspective: 1000px;
+            flex-wrap: wrap; 
+            gap: 15px;
+        }
+
+        .logo-wrapper { 
+            animation: spinLogo 6s linear infinite; 
+            transform-style: preserve-3d; 
+            max-width: 100%;
+        }
+
         @keyframes spinLogo { from { transform: rotateY(0deg); } to { transform: rotateY(360deg); } }
-        .logo { font-family: 'Syncopate'; color: var(--red); font-size: 1.4rem; text-decoration: none; display: block; text-shadow: 0 0 10px rgba(255, 0, 51, 0.5); }
+
+        .logo { 
+            font-family: 'Syncopate'; 
+            color: var(--red); 
+            font-size: 1.4rem; 
+            text-decoration: none; 
+            display: block; 
+            text-shadow: 0 0 10px rgba(255, 0, 51, 0.5); 
+        }
+
+        nav { display: flex; align-items: center; }
         nav a { color: white; text-decoration: none; margin-left: 20px; font-size: 0.8rem; font-weight: 700; transition: 0.3s; }
         nav a:hover { color: var(--red); }
 
@@ -28,31 +73,45 @@
         .beat-grid { display: grid; grid-template-columns: 1fr; gap: 20px; padding-bottom: 50px; }
         @media (min-width: 768px) { .beat-grid { grid-template-columns: 1fr 1fr; } }
 
-        .beat-card { background: var(--grey); border: 1px solid #222; padding: 15px; border-radius: 12px; display: flex; align-items: center; transition: 0.3s; position: relative; }
+        /* FIX: Ensure cards never exceed screen width */
+        .beat-card { 
+            background: var(--grey); 
+            border: 1px solid #222; 
+            padding: 15px; 
+            border-radius: 12px; 
+            display: flex; 
+            align-items: center; 
+            transition: 0.3s; 
+            position: relative; 
+            width: 100%;
+            overflow: hidden;
+        }
+
         .beat-card:hover:not(.sold) { border-color: var(--red); transform: translateY(-3px); }
 
-        .beat-img { width: 70px; height: 70px; border-radius: 6px; margin-right: 15px; object-fit: cover; border: 1px solid #333; flex-shrink: 0; }
-        .play-btn { width: 40px; height: 40px; border-radius: 50%; background: var(--red); border: none; color: white; cursor: pointer; margin-right: 15px; flex-shrink: 0; font-size: 0.8rem; display: flex; align-items: center; justify-content: center; }
+        .beat-img { width: 60px; height: 60px; border-radius: 6px; margin-right: 12px; object-fit: cover; border: 1px solid #333; flex-shrink: 0; }
+        .play-btn { width: 40px; height: 40px; border-radius: 50%; background: var(--red); border: none; color: white; cursor: pointer; margin-right: 12px; flex-shrink: 0; font-size: 0.8rem; display: flex; align-items: center; justify-content: center; }
 
-        .beat-info { flex-grow: 1; overflow: hidden; }
-        .beat-info h3 { margin: 0; font-size: 0.95rem; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+        /* FIX: prevent text from pushing the card width wider than the screen */
+        .beat-info { flex-grow: 1; min-width: 0; } 
+        .beat-info h3 { margin: 0; font-size: 0.9rem; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
         .beat-info p { margin: 5px 0 0; font-size: 0.7rem; color: #666; cursor: pointer; }
 
-        .price { font-weight: 900; color: var(--red); margin: 0 15px; }
-        .buy-btn { background: white; border: none; padding: 10px 15px; border-radius: 6px; font-weight: 900; font-size: 0.75rem; cursor: pointer; }
+        .price { font-weight: 900; color: var(--red); margin: 0 10px; font-size: 0.85rem; }
+        .buy-btn { background: white; border: none; padding: 8px 12px; border-radius: 6px; font-weight: 900; font-size: 0.7rem; cursor: pointer; flex-shrink: 0; }
 
         .sold .buy-btn { display: none; }
-        .sold-label { position: absolute; right: 20px; top: 20px; color: var(--red); font-family: 'Syncopate'; font-size: 0.7rem; border: 2px solid var(--red); padding: 5px; transform: rotate(-10deg); background: rgba(5,5,5,0.8); }
+        .sold-label { position: absolute; right: 10px; top: 15px; color: var(--red); font-family: 'Syncopate'; font-size: 0.6rem; border: 2px solid var(--red); padding: 3px; transform: rotate(-10deg); background: rgba(5,5,5,0.8); }
 
         footer { padding: 80px 0 180px 0; text-align: center; border-top: 1px solid rgba(255,0,0,0.1); }
         .social-links { display: flex; justify-content: center; gap: 20px; margin-top: 25px; flex-wrap: wrap; }
         .social-links a { color: #888; text-decoration: none; font-size: 0.65rem; font-weight: 900; font-family: 'Syncopate'; letter-spacing: 2px; padding: 10px; }
 
-        .player-bar { position: fixed; bottom: 0; left: 0; width: 100%; background: rgba(0,0,0,0.95); backdrop-filter: blur(10px); border-top: 2px solid var(--red); padding: 20px; z-index: 100; }
+        .player-bar { position: fixed; bottom: 0; left: 0; width: 100%; background: rgba(0,0,0,0.95); backdrop-filter: blur(10px); border-top: 2px solid var(--red); padding: 15px 0 25px 0; z-index: 100; }
         .progress-bg { width: 100%; height: 4px; background: #222; margin-bottom: 10px; }
         #progress-fill { height: 100%; background: var(--red); width: 0%; transition: linear; }
 
-        .stop-btn { background: transparent; border: 1px solid #444; color: #888; padding: 5px 10px; border-radius: 4px; cursor: pointer; font-family: 'Syncopate'; font-size: 0.6rem; transition: 0.3s; }
+        .stop-btn { background: transparent; border: 1px solid #444; color: #888; padding: 5px 10px; border-radius: 4px; cursor: pointer; font-family: 'Syncopate'; font-size: 0.5rem; transition: 0.3s; }
         .stop-btn:hover { color: var(--red); border-color: var(--red); }
     </style>
 </head>
@@ -94,9 +153,9 @@
     <div class="player-bar" id="playerBar" style="display:none;">
         <div class="progress-bg"><div id="progress-fill"></div></div>
         <div class="container" style="display:flex; justify-content: space-between; align-items: center; font-size: 0.7rem; font-family: 'Syncopate';">
-            <div>
-                <span id="nowPlayingTitle">TRACK NAME</span>
-                <span id="timeDisplay" style="margin-left: 10px; color: #666;">00:00</span>
+            <div style="min-width: 0; overflow: hidden;">
+                <span id="nowPlayingTitle" style="white-space: nowrap; text-overflow: ellipsis; overflow: hidden; display: block;">TRACK NAME</span>
+                <span id="timeDisplay" style="color: #666;">00:00</span>
             </div>
             <button class="stop-btn" onclick="stopAudio()">STOP X</button>
         </div>
@@ -104,15 +163,10 @@
 
     <script>
         const beats = [
-            { id: 1, title: "MANOLO", bpm: 140, price: "R700", sold: false, image: "b.jpeg", audio: "1.mp3" },
-            { id: 2, title: "HAMBO LALA", bpm: 128, price: "R700", sold: false, image: "b.jpeg", audio: "2.mp3" },
+            { id: 1, title: "MANOLO", bpm: 140, price: "R700", sold: false, image: "b.jpeg", audio: "beats/1.mp3" },
+            { id: 2, title: "HAMBO LALA", bpm: 128, price: "R700", sold: false, image: "b.jpeg", audio: "beats/2.mp3" },
             { id: 3, title: "MAYHEM FREE STYLE", bpm: 150, price: "R700", sold: false, image: "b.jpeg", audio: "audio/mayhem.mp3" },
-			{ id: 3, title: "MAYHEM FREE STYLE", bpm: 150, price: "R700", sold: false, image: "b.jpeg", audio: "audio/mayhem.mp3" },
-			{ id: 3, title: "MAYHEM FREE STYLE", bpm: 150, price: "R700", sold: false, image: "b.jpeg", audio: "audio/mayhem.mp3" },
-		    { id: 3, title: "MAYHEM FREE STYLE", bpm: 150, price: "R700", sold: false, image: "b.jpeg", audio: "audio/mayhem.mp3" },
-            { id: 3, title: "MAYHEM FREE STYLE", bpm: 150, price: "R700", sold: false, image: "b.jpeg", audio: "audio/mayhem.mp3" },
-			{ id: 4, title: "CYBERPUNK", bpm: 140, price: "R700", sold: false, image: "b.jpeg", audio: "audio/cyber.mp3" }
-            // Add more here following the same format...
+            { id: 4, title: "CYBERPUNK", bpm: 140, price: "R700", sold: false, image: "b.jpeg", audio: "audio/cyber.mp3" }
         ];
 
         const grid = document.getElementById('beatGrid');
@@ -132,7 +186,7 @@
                 card.className = `beat-card ${beat.sold ? 'sold' : ''}`;
                 card.innerHTML = `
                     <img src="${beat.image}" class="beat-img">
-                    <button class="play-btn" data-audio="${beat.audio}" onclick="togglePlay('${beat.audio}', '${beat.title}', this)">▶</button>
+                    <button class="play-btn" onclick="togglePlay('${beat.audio}', '${beat.title}', this)">▶</button>
                     <div class="beat-info">
                         <h3>${beat.title}</h3>
                         <p onclick="toggleSold(${beat.id})">${beat.bpm} BPM</p>
@@ -144,7 +198,6 @@
         }
 
         function togglePlay(file, title, btn) {
-            // Check if we are clicking the same song
             if (mainAudio.src.includes(file)) {
                 if (mainAudio.paused) {
                     mainAudio.play();
@@ -154,7 +207,6 @@
                     btn.innerText = "▶";
                 }
             } else {
-                // Clicking a different song
                 resetButtons();
                 mainAudio.src = file;
                 mainAudio.play();
@@ -208,4 +260,3 @@
     </script>
 </body>
 </html>
-
